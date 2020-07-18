@@ -1,11 +1,21 @@
 # My Personal Project
 
-## A subtitle
+## Phase 1
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+#### What will the application do? Who will use it?
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+I want to create an application where you can first gain "coins" by completing certain activity/actions, 
+and then you can use these coins to purchase certain characters from *Sonic the Hedgehog*. 
+You can then use these coins to power up different traits of the characters you purchased.
+
+Ideally, the actions to be completed in order to gain coins will be complicated and fun enough to be like a game.
+Perhaps things like a puzzle (sudoku? maze?).
+
+The user can also view the characters with their different traits and how much it costs to power up to the next level,
+what level they're currently at, etc.
+
+#### Why is this project of interest to you?
+
+I wanted to create this project because I play a mobile version of this game a lot and it's quite fun to always 
+have a goal to work towards in a game (e.g. accumulating coins to power up a character).
+I also don't really play games at all so I wanted to try and code one and see how it is like.
