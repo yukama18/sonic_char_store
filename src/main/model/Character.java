@@ -1,48 +1,38 @@
 package model;
 
 public class Character {
-    String name;
-    int characterCost;
-    String jumpSkill;
-    String dashSkill;
-    String shieldSkill;
-    private int jumpStat;
-    private int dashStat;
-    private int shieldStat;
-    private int jumpPowerUpCost;
-    private int dashPowerUpCost;
-    private int shieldPowerUpCost;
+    static int numOfChar = 0;
+    private String name;
+    private int characterCost;
+    private Skill jump;
+    private Skill dash;
+    private Skill shield;
 
     // EFFECTS: create a character with characterName as name,
-    //          3 basic skills all at a level of 0, and
-    //          base cost to power up each skill at 100 coins;
+    //          with a base characterCost of 800;
+    //          with level 1 jump, dash, and shield skills
+    //          increment static variable numOfChar
     public Character(String characterName) {
         this.name = characterName;
-        jumpSkill = "jump";
-        dashSkill = "dash";
-        shieldSkill = "shield";
-        jumpStat = 0;
-        dashStat = 0;
-        shieldStat = 0;
-        jumpPowerUpCost = 100;
-        dashPowerUpCost = 100;
-        shieldPowerUpCost = 100;
+        characterCost = 1000;
+        jump = new Skill("jump");
+        dash = new Skill("dash");
+        shield = new Skill("shield");
+        numOfChar++;
     }
 
-    // EFFECTS: if there is sufficient balance on the account
-    //            - subtracts amount cents from balance
-    //            - adds reward points and then
-    //                - if eligible, adds cash back reward(s) to account and deducts corresponding reward points
-    //            - returns true
-    //          otherwise, returns false
-
-    // REQUIRES: skillName is one of the 3 available skills to power up
-    // MODIFIES: this, totalCoins
-    // EFFECTS: if the user has enough coins to power up a given skill,
-    //              - subtract powerUpCost from totalCoins
-    //              -
-    public boolean powerUp(String skillName) {
-        return false;
+    // REQUIRES: skillName is "jump", "dash", or "shield"
+    // EFFECTS: increment level of character skill with skillName by 1
+    public void levelUp(String skillName) {
+        if (skillName == "jump") {
+            jump.levelUpByOne();
+        } else {
+            if (skillName == "dash") {
+                dash.levelUpByOne();
+            } else {
+                shield.levelUpByOne();
+            }
+        }
     }
 
     // EFFECTS: returns name of character
@@ -50,52 +40,24 @@ public class Character {
         return name;
     }
 
-    public void setJumpStat(int jumpStat) {
-        this.jumpStat = jumpStat;
+    // EFFECTS: returns cost of character
+    public int getCharacterCost() {
+        return characterCost;
     }
 
-    public int getJumpStat() {
-        return jumpStat;
+    // EFFECTS: returns jump skill
+    public Skill getJump() {
+        return jump;
     }
 
-    public void setDashStat(int dashStat) {
-        this.dashStat = dashStat;
+    // EFFECTS: returns dash skill
+    public Skill getDash() {
+        return dash;
     }
 
-    public int getDashStat() {
-        return dashStat;
-    }
-
-    public void setShieldStat(int shieldStat) {
-        this.shieldStat = dashStat;
-    }
-
-    public int getShieldStat() {
-        return shieldStat;
-    }
-
-    public void setJumpPowerUpCost(int jumpPowerUpCost) {
-        this.jumpPowerUpCost = jumpPowerUpCost;
-    }
-
-    public int getJumpPowerUpCost() {
-        return jumpPowerUpCost;
-    }
-
-    public void setDashPowerUpCost(int dashPowerUpCost) {
-        this.dashPowerUpCost = dashPowerUpCost;
-    }
-
-    public int getDashPowerUpCost() {
-        return dashPowerUpCost;
-    }
-
-    public void setShieldPowerUpCost(int shieldPowerUpCost) {
-        this.shieldPowerUpCost = shieldPowerUpCost;
-    }
-
-    public int getShieldPowerUpCost() {
-        return shieldPowerUpCost;
+    // EFFECTS: returns shield skill
+    public Skill getShield() {
+        return shield;
     }
 
 }
