@@ -6,26 +6,53 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterTest {
-    Character c1;
-    Character c2;
+    Character c;
 
     @BeforeEach
     public void runBefore() {
-        c1 = new Character("test");
-        assertEquals(1,Character.numOfChar);
-        assertEquals("test", c1.getName());
-        assertEquals(1000, c1.getCharacterCost());
-        // assume jump, dash, and shield skills are instantiated properly
+        c = new Character("test");
+        assertEquals("test", c.getName());
+        assertEquals(1000, c.getCharacterCost());
+
+        //test skills just be name and skill level
+        correctSkills(1,1,1);
     }
 
     @Test
-    public void testNumOfCharIncrements() {
-        c2 = new Character("test2");
-        assertEquals(2,Character.numOfChar);
+    public void levelUpOnlyJump() {
+        c.levelUp("jump");
+        correctSkills(2,1,1);
     }
 
-    // how do i test if levelupbyone is working properly
+    @Test
+    public void levelUpOnlyDash() {
+        c.levelUp("dash");
+        correctSkills(1,2,1);
+    }
 
-    // test setters/getters?
+    @Test
+    public void levelUpOnlyShield() {
+        c.levelUp("shield");
+        correctSkills(1,1,2);
+    }
+
+    @Test
+    public void levelUpAllSkills() {
+        c.levelUp("jump");
+        c.levelUp("dash");
+        c.levelUp("shield");
+        correctSkills(2,2,2);
+    }
+
+
+    private void correctSkills(int j, int d, int s) {
+        assertEquals("jump", c.getJump().getName());
+        assertEquals("dash", c.getDash().getName());
+        assertEquals("shield", c.getShield().getName());
+        assertEquals(j,c.getJump().getLevel());
+        assertEquals(d,c.getDash().getLevel());
+        assertEquals(s,c.getShield().getLevel());
+
+    }
 
 }

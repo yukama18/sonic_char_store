@@ -1,7 +1,6 @@
 package model;
 
 public class Character {
-    static int numOfChar = 0;
     private String name;
     private int characterCost;
     private Skill jump;
@@ -18,7 +17,6 @@ public class Character {
         jump = new Skill("jump");
         dash = new Skill("dash");
         shield = new Skill("shield");
-        numOfChar++;
     }
 
     // REQUIRES: skillName is "jump", "dash", or "shield"

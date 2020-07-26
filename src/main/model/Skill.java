@@ -32,7 +32,7 @@ public class Skill {
 
     // helper
     // EFFECTS: increment skill level by 1
-    public void incrementLevel() {
+    private void incrementLevel() {
         level = level + 1;
     }
 
