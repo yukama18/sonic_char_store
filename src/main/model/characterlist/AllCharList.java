@@ -9,7 +9,7 @@ public class AllCharList extends CharList {
     private Character tails;                 // = new Character("tails");
     private Character knuckles;              // = new Character("knuckles");
     private Character amy;                   // = new Character("amy");
-    private Character villain;               // = new Character("doctor eggman");
+    private Character villain;               // = new Character("eggman");
 
     // REQUIRES: only called when listName == "all characters available"
     // EFFECTS: creates an empty charList first
@@ -20,7 +20,7 @@ public class AllCharList extends CharList {
         tails = new Character("tails");
         knuckles = new Character("knuckles");
         amy = new Character("amy");
-        villain = new Character("doctor eggman");
+        villain = new Character("eggman");
         loadAllChar();
     }
 
@@ -39,6 +39,7 @@ public class AllCharList extends CharList {
     // MODIFIES: this
     // EFFECTS: removes Character with given charName in list, then returns it
     //          (lab5 ca.ubc.cpsc210.helpdesk.model.IncidentQueue#getNextIncident)
+    @Override
     public Character getChar(String charName) {
         Character foundChar = null;
         for (Character c: charList) {

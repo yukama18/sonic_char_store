@@ -28,6 +28,20 @@ public abstract class CharList {
         return containsChar;
     }
 
+    // REQUIRES: this contains Character with charName (only once)
+    // MODIFIES: this
+    // EFFECTS: returns Character with given charName in list
+    public Character getChar(String charName) {
+        Character foundChar = null;
+        for (Character c: charList) {
+            if (c.getName() == charName) {
+                foundChar = c;
+                break;
+            }
+        }
+        return foundChar;
+    }
+
     // EFFECTS: returns name of the list
     public String getListName() {
         return listName;

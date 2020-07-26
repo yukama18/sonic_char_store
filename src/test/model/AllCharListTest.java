@@ -18,7 +18,7 @@ public class AllCharListTest {
         assertTrue(allChar.containsChar("tails"));
         assertTrue(allChar.containsChar("knuckles"));
         assertTrue(allChar.containsChar("amy"));
-        assertTrue(allChar.containsChar("doctor eggman"));
+        assertTrue(allChar.containsChar("eggman"));
         assertFalse(allChar.containsChar("mario"));
         assertFalse(allChar.isEmpty());
         assertTrue(allChar.isFull());
@@ -39,7 +39,7 @@ public class AllCharListTest {
 
     @Test
     public void getAllChar() {
-        allChar.getChar("doctor eggman");
+        allChar.getChar("eggman");
         allChar.getChar("amy");
         allChar.getChar("knuckles");
         allChar.getChar("tails");
@@ -52,7 +52,7 @@ public class AllCharListTest {
         assertFalse(allChar.containsChar("tails"));
         assertFalse(allChar.containsChar("knuckles"));
         assertFalse(allChar.containsChar("amy"));
-        assertFalse(allChar.containsChar("doctor eggman"));
+        assertFalse(allChar.containsChar("eggman"));
     }
 
 }
