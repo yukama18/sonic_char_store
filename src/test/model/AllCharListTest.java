@@ -22,6 +22,8 @@ public class AllCharListTest {
         assertFalse(allChar.containsChar("mario"));
         assertFalse(allChar.isEmpty());
         assertTrue(allChar.isFull());
+
+        assertEquals(null,allChar.getChar("mario"));
     }
 
     @Test
@@ -37,11 +39,11 @@ public class AllCharListTest {
 
     @Test
     public void getAllChar() {
-        allChar.getChar("sonic");
-        allChar.getChar("tails");
-        allChar.getChar("knuckles");
-        allChar.getChar("amy");
         allChar.getChar("doctor eggman");
+        allChar.getChar("amy");
+        allChar.getChar("knuckles");
+        allChar.getChar("tails");
+        allChar.getChar("sonic");
 
         assertEquals(0,allChar.numOfChar());
         assertTrue(allChar.isEmpty());

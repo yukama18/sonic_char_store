@@ -22,6 +22,7 @@ public abstract class CharList {
         for (Character c: charList) {
             if (c.getName() == charName) {
                 containsChar = true;
+                break;
             }
         }
         return containsChar;

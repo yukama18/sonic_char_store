@@ -62,6 +62,7 @@ public class AllCharList extends CharList {
 
     @Override
     public String getListName() {
+        super.getListName();
         return ALL_CHAR_AVAIL;
     }
 

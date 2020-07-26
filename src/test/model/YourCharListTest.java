@@ -16,11 +16,11 @@ public class YourCharListTest {
         yourList = new YourCharList("your list");
         assertEquals("your list", yourList.getListName());
         assertEquals(0, yourList.numOfChar());
-        assertFalse(yourList.containsChar("sonic"));
-        assertFalse(yourList.containsChar("tails"));
-        assertFalse(yourList.containsChar("knuckles"));
-        assertFalse(yourList.containsChar("amy"));
         assertFalse(yourList.containsChar("doctor eggman"));
+        assertFalse(yourList.containsChar("knuckles"));
+        assertFalse(yourList.containsChar("tails"));
+        assertFalse(yourList.containsChar("amy"));
+        assertFalse(yourList.containsChar("sonic"));
         assertFalse(yourList.containsChar("mario"));
         assertTrue(yourList.isEmpty());
     }
@@ -31,5 +31,6 @@ public class YourCharListTest {
         assertEquals(1,yourList.numOfChar());
         assertFalse(yourList.isEmpty());
         assertTrue(yourList.containsChar("sonic"));
+        assertFalse(yourList.containsChar("amy"));
     }
 }
