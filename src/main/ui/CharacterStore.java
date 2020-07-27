@@ -63,7 +63,7 @@ public class CharacterStore {
         String command = input.next().toLowerCase();
 
         while (!(command.equals("r"))) {
-            System.out.println("Press r to generate coin, or 0 to quit.");
+            System.out.println("Press r to generate coin, or 0 to return.");
             String command2 = input.next().toLowerCase();
             if (command2.equals("0")) {
                 return;
@@ -79,7 +79,6 @@ public class CharacterStore {
         coins = coins + amountGenerated;
         System.out.println(printCoins());
     }
-
 
     // EFFECTS: generate a random integer between 3000 and 600
     private int randomGenerate() {
@@ -174,33 +173,67 @@ public class CharacterStore {
 
     // EFFECTS: displays all available characters or conducts purchases of characters with sufficient costs
     private void viewAllChar() {
-        String welcome = "Here are all the available characters in the store. Each costs 100 coins. ";
-        System.out.println(welcome + printCoins() + " Type a character's name to view or purchase.");
+        String command = intro();
 
+        while (notAChar(command)) {
+            System.out.println("Please pick a character or 0 to return to options!");
+            String command2 = input.next().toLowerCase();
+            if (command2.equals("0")) {
+                return;
+            } else {
+                if (!notAChar(command2)) {
+                    break;
+                }
+            }
+        }
+        attemptPurchase(command);
+    }
+
+    // EFFECTS: attempts to purchase character given by user input
+    private void attemptPurchase(String command) {
+        if (coins >= 1000) {
+            if (command.equals("sonic")) {
+                buyChar("sonic");
+            } else if (command.equals("tails")) {
+                buyChar("tails");
+            } else if (command.equals("knuckles")) {
+                buyChar("knuckles");
+            } else if (command.equals("amy")) {
+                buyChar("amy");
+            } else if (command.equals("eggman")) {
+                buyChar("eggman");
+            }
+        } else {
+            System.out.println("Sorry, you have insufficient coins! Please generate with lucky toss.");
+        }
+    }
+
+
+    // EFFECTS: returns false if user did not input a valid character name
+    private boolean notAChar(String command) {
+        boolean notAChar = false;
+        boolean s = command.equals("sonic");
+        boolean t = command.equals("tails");
+        boolean k = command.equals("knuckles");
+        boolean a = command.equals("amy");
+        boolean e = command.equals("eggman");
+
+        notAChar = !(s || t || k || a || e);
+        return notAChar;
+    }
+
+    // EFFECTS: prints intro to all available characters and takes user input
+    private String intro() {
+        String welcome = "Here are all available characters. Each costs 100 coins. ";
+        System.out.println(welcome + printCoins() + " Type a character's name to view or purchase.");
         displayCharNames(allChar);
 
         String command = input.next().toLowerCase();
 
-        if (command.equals("0")) {
-            return;
-        } else {
-            if (coins >= 1000) {
-                if (command.equals("sonic")) {
-                    buyChar("sonic");
-                } else if (command.equals("tails")) {
-                    buyChar("tails");
-                } else if (command.equals("knuckles")) {
-                    buyChar("knuckles");
-                } else if (command.equals("amy")) {
-                    buyChar("amy");
-                } else if (command.equals("eggman")) {
-                    buyChar("eggman");
-                }
-            } else {
-                System.out.println("Sorry, you have insufficient coins! Please generate with lucky toss.");
-            }
-        }
+        return command;
     }
+
+
 
     // EFFECTS: buys character
     private void buyChar(String name) {

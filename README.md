@@ -22,6 +22,6 @@ I also don't really play games at all, so I wanted to try to code one and see ho
 - **As a user, I want to be able to generate a lucky toss to obtain a random amount of coins.**
 - **As a user, I want to be able to see how many coins I currently have.**
 - **As a user, I want to be able to view all the characters available, and all the characters I own.**
-- As a user, I want to be able to add a character to the list of characters I own.
+- **As a user, I want to be able to add a character to the list of characters I own.**
 - **As a user, I want to be able to select a character and view how much it costs to power up/purchase it.**
-- As a user, I want to be able to select a character and power up/purchase it.
+- **As a user, I want to be able to select a character and power up/purchase it.**
