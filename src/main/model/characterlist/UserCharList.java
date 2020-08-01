@@ -2,9 +2,11 @@ package model.characterlist;
 
 import model.Character;
 
-public class YourCharList extends CharList {
+// represents list of characters owned by user (adds characters from AllCharList)
 
-    public YourCharList(String listName) {
+public class UserCharList extends CharList {
+
+    public UserCharList(String listName) {
         super(listName);
     }
 

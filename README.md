@@ -25,3 +25,5 @@ I also don't really play games at all, so I wanted to try to code one and see ho
 - **As a user, I want to be able to add a character to the list of characters I own.**
 - **As a user, I want to be able to select a character and view how much it costs to power up/purchase it.**
 - **As a user, I want to be able to select a character and power up/purchase it.**
+- As a user, I want to be able to save the state of the application if I choose to do so.
+- As a user, I want to be able to reload the state of the application from where I left off last time (if I saved it).

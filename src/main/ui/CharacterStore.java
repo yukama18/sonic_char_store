@@ -3,17 +3,19 @@ package ui;
 import model.Skill;
 import model.characterlist.AllCharList;
 import model.characterlist.CharList;
-import model.characterlist.YourCharList;
+import model.characterlist.UserCharList;
 import model.Character;
 
 import java.util.Scanner;
+
+// Store that allows transactions of characters through user interaction
 
 public class CharacterStore {
 //  (reference: ca.ubc.cpsc210.bank.ui.TellerApp#runTeller)
 
     private Scanner input;
     private AllCharList allChar;
-    private YourCharList yourChar;
+    private UserCharList yourChar;
     private int coins;
 
     // EFFECTS: runs the game store application
@@ -282,7 +284,7 @@ public class CharacterStore {
     // EFFECTS: initializes list of all characters available and characters user owns
     public void initChar() {
         allChar = new AllCharList();
-        yourChar = new YourCharList("your characters");
+        yourChar = new UserCharList("your characters");
     }
 
 

@@ -2,6 +2,8 @@ package model.characterlist;
 
 import model.Character;
 
+// A character list with all available characters already loaded
+
 public class AllCharList extends CharList {
     static final int MAX_SIZE = 5;
     private static final String ALL_CHAR_AVAIL = "all characters available";

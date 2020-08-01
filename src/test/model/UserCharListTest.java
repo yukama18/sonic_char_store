@@ -1,19 +1,19 @@
 package model;
 
 import model.characterlist.AllCharList;
-import model.characterlist.YourCharList;
+import model.characterlist.UserCharList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class YourCharListTest {
-    YourCharList yourList;
+public class UserCharListTest {
+    UserCharList yourList;
     AllCharList allChar = new AllCharList();
 
     @BeforeEach
     public void runBefore() {
-        yourList = new YourCharList("your list");
+        yourList = new UserCharList("your list");
         assertEquals("your list", yourList.getListName());
         assertEquals(0, yourList.numOfChar());
         assertFalse(yourList.containsChar("eggman"));
