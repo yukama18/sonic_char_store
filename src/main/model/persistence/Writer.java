@@ -3,9 +3,7 @@ package model.persistence;
 // a writer that can write character list data to a file
 
 import com.google.gson.Gson;
-import model.characterlist.CharList;
 import model.characterlist.UserCharList;
-import ui.CharacterStore;
 
 import java.io.*;
 
@@ -21,7 +19,7 @@ public class Writer {
 
     // MODIFIES: this
     // EFFECTS: writes your character list to file
-    public void write(CharList yourChar) throws IOException {
+    public void write(UserCharList yourChar) throws IOException {
         String json = gson.toJson(yourChar);
         writer.write(json);
     }

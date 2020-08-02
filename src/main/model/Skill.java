@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Skill implements Serializable {
     static final int MAX_LEVEL = 5;
@@ -55,5 +56,4 @@ public class Skill implements Serializable {
     public int getPowerUpCost() {
         return powerUpCost;
     }
-
 }

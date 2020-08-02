@@ -3,6 +3,7 @@ package model;
 // character with name, base cost, and 3 skills
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Character implements Serializable {
     private String name;
@@ -26,10 +27,10 @@ public class Character implements Serializable {
     // REQUIRES: skillName is "jump", "dash", or "shield"
     // EFFECTS: increment level of character skill with skillName by 1
     public void levelUp(String skillName) {
-        if (skillName == "jump") {
+        if (skillName.equals("jump")) {
             jump.levelUpByOne();
         } else {
-            if (skillName == "dash") {
+            if (skillName.equals("dash")) {
                 dash.levelUpByOne();
             } else {
                 shield.levelUpByOne();
@@ -62,4 +63,20 @@ public class Character implements Serializable {
         return shield;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Character character = (Character) o;
+        return name.equals(character.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

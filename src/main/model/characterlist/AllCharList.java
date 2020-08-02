@@ -58,7 +58,7 @@ public class AllCharList extends CharList {
     public Character getChar(String charName) {
         Character foundChar = null;
         for (Character c: charList) {
-            if (c.getName() == charName) {
+            if (c.getName().equals(charName)) {
                 foundChar = c;
                 charList.remove(c);
                 break;

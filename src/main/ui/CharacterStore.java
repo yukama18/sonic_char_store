@@ -20,7 +20,7 @@ public class CharacterStore {
     public static final String CLIST_FILE = "./data/clists.txt";
     private Scanner input;
     private AllCharList allChar;
-    private CharList yourChar;
+    private UserCharList yourChar;
     private int coins;
 
     // EFFECTS: runs the game store application
@@ -295,7 +295,7 @@ public class CharacterStore {
         if (cl.containsChar(name)) {
             System.out.println(name);
         } else {
-            if (cl.getListName() == "your characters") {
+            if (cl.getListName().equals("your characters")) {
                 System.out.println(name + " not yet bought!");
             } else {
                 System.out.println(name + " already bought!");

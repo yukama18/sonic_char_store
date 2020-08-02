@@ -23,9 +23,9 @@ public class Reader {
         jr = new JsonReader(fr);
     }
 
-    public CharList readList() {
+    public UserCharList readList() {
         savedList = new TypeToken<UserCharList>() {}.getType();
-        CharList yourChar = gson.fromJson(jr, savedList);
+        UserCharList yourChar = gson.fromJson(jr, savedList);
         return yourChar;
     }
 

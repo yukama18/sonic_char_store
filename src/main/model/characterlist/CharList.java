@@ -1,7 +1,6 @@
 package model.characterlist;
 
 import model.Character;
-import model.persistence.Saveable;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class CharList {
     public boolean containsChar(String charName) {
         boolean containsChar = false;
         for (Character c: charList) {
-            if (c.getName() == charName) {
+            if (c.getName().equals(charName)) {
                 containsChar = true;
                 break;
             }
@@ -37,7 +36,7 @@ public class CharList {
     public Character getChar(String charName) {
         Character foundChar = null;
         for (Character c: charList) {
-            if (c.getName() == charName) {
+            if (c.getName().equals(charName)) {
                 foundChar = c;
                 break;
             }
