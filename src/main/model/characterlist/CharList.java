@@ -1,6 +1,7 @@
 package model.characterlist;
 
 import model.Character;
+import model.persistence.Saveable;
 
 import java.util.ArrayList;
 

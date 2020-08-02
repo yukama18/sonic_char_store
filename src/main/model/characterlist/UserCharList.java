@@ -6,6 +6,7 @@ import model.Character;
 
 public class UserCharList extends CharList {
 
+    // EFFECTS: creates an empty list of Characters with name as listName
     public UserCharList(String listName) {
         super(listName);
     }

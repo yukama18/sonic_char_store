@@ -11,7 +11,7 @@ public class AllCharList extends CharList {
     private Character tails;                 // = new Character("tails");
     private Character knuckles;              // = new Character("knuckles");
     private Character amy;                   // = new Character("amy");
-    private Character villain;               // = new Character("eggman");
+    private Character eggman;               // = new Character("eggman");
 
     // REQUIRES: only called when listName == "all characters available"
     // EFFECTS: creates an empty charList first
@@ -22,7 +22,7 @@ public class AllCharList extends CharList {
         tails = new Character("tails");
         knuckles = new Character("knuckles");
         amy = new Character("amy");
-        villain = new Character("eggman");
+        eggman = new Character("eggman");
         loadAllChar();
     }
 
@@ -34,7 +34,7 @@ public class AllCharList extends CharList {
         charList.add(tails);
         charList.add(knuckles);
         charList.add(amy);
-        charList.add(villain);
+        charList.add(eggman);
     }
 
     // REQUIRES: this contains Character with charName (only once)

@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class CharacterStore {
 //  (reference: ca.ubc.cpsc210.bank.ui.TellerApp#runTeller)
 
+    private static final String CLIST_FILE = "./data/clists.txt";
     private Scanner input;
     private AllCharList allChar;
     private UserCharList yourChar;
