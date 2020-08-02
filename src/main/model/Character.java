@@ -2,7 +2,9 @@ package model;
 
 // character with name, base cost, and 3 skills
 
-public class Character {
+import java.io.Serializable;
+
+public class Character implements Serializable {
     private String name;
     private int characterCost;
     private Skill jump;

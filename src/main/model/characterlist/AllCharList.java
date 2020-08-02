@@ -26,6 +26,19 @@ public class AllCharList extends CharList {
         loadAllChar();
     }
 
+    public AllCharList(CharList yourChar) {
+        super(ALL_CHAR_AVAIL);
+        sonic = new Character("sonic");
+        tails = new Character("tails");
+        knuckles = new Character("knuckles");
+        amy = new Character("amy");
+        eggman = new Character("eggman");
+        loadAllChar();
+        for (Character c : yourChar.charList) {
+            charList.remove(c);
+        }
+    }
+
     // REQUIRES: this is empty
     // MODIFIES: this
     // EFFECTS: loads all available characters once

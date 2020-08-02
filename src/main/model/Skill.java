@@ -1,6 +1,8 @@
 package model;
 
-public class Skill {
+import java.io.Serializable;
+
+public class Skill implements Serializable {
     static final int MAX_LEVEL = 5;
     static final int POWER_UP_BASE_COST = 300;
 

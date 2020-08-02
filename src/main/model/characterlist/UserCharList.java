@@ -2,6 +2,9 @@ package model.characterlist;
 
 import model.Character;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 // represents list of characters owned by user (adds characters from AllCharList)
 
 public class UserCharList extends CharList {

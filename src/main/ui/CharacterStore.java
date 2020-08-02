@@ -5,7 +5,11 @@ import model.characterlist.AllCharList;
 import model.characterlist.CharList;
 import model.characterlist.UserCharList;
 import model.Character;
+import model.persistence.Reader;
+import model.persistence.Writer;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Store that allows transactions of characters through user interaction
@@ -13,10 +17,10 @@ import java.util.Scanner;
 public class CharacterStore {
 //  (reference: ca.ubc.cpsc210.bank.ui.TellerApp#runTeller)
 
-    private static final String CLIST_FILE = "./data/clists.txt";
+    public static final String CLIST_FILE = "./data/clists.txt";
     private Scanner input;
     private AllCharList allChar;
-    private UserCharList yourChar;
+    private CharList yourChar;
     private int coins;
 
     // EFFECTS: runs the game store application
@@ -31,7 +35,8 @@ public class CharacterStore {
         String command = null;
         input = new Scanner(System.in);
 
-        initChar();
+//        initChar();
+        loadChar();
 
         while (keepGoing) {
             displayOptions();
@@ -40,9 +45,36 @@ public class CharacterStore {
 
             if (command.equals("q")) {
                 keepGoing = false;
+                saveChar();
             } else {
                 processCommands(command);
             }
+        }
+    }
+
+    // EFFECTS: saves state of your character list to CLIST_FILE
+    private void saveChar() {
+        try {
+            Writer writer = new Writer(CLIST_FILE);
+            writer.write(yourChar);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads character lists from CLIST_FILE. if file dne, initialize char lists with default values
+    private void loadChar() {
+        try {
+            Reader reader = new Reader(CLIST_FILE);
+            yourChar = reader.readList();
+            reader.close();
+            allChar = new AllCharList(yourChar);
+        } catch (FileNotFoundException e) {
+            initChar();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -235,8 +267,6 @@ public class CharacterStore {
 
         return command;
     }
-
-
 
     // EFFECTS: buys character
     private void buyChar(String name) {
