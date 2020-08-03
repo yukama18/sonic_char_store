@@ -1,6 +1,7 @@
 package model;
 
 import model.characterlist.AllCharList;
+import model.characterlist.UserCharList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AllCharListTest {
     AllCharList allChar;
+    AllCharList loadedAllChar;
 
     @BeforeEach
     public void runBefore() {
@@ -24,6 +26,24 @@ public class AllCharListTest {
         assertTrue(allChar.isFull());
 
         assertEquals(null,allChar.getChar("mario"));
+    }
+
+    @Test
+    public void loadedConstructor() {
+        UserCharList loadedUserChar = new UserCharList("test load");
+        loadedUserChar.addChar(new Character("sonic"));
+
+        loadedAllChar = new AllCharList(loadedUserChar);
+        assertEquals("all characters available", allChar.getListName());
+        assertEquals(4,loadedAllChar.numOfChar());
+        assertFalse(loadedAllChar.containsChar("sonic"));
+        assertTrue(loadedAllChar.containsChar("tails"));
+        assertTrue(loadedAllChar.containsChar("knuckles"));
+        assertTrue(loadedAllChar.containsChar("amy"));
+        assertTrue(loadedAllChar.containsChar("eggman"));
+        assertFalse(loadedAllChar.containsChar("mario"));
+        assertFalse(loadedAllChar.isEmpty());
+        assertFalse(loadedAllChar.isFull());
     }
 
     @Test

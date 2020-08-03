@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 // empty list of characters
 
-public class CharList {
+public abstract class CharList {
     ArrayList<Character> charList;
     private String listName;
 

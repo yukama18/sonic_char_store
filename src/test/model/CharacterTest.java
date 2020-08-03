@@ -44,6 +44,23 @@ class CharacterTest {
         correctSkills(2,2,2);
     }
 
+    @Test
+    public void testEqualsAndHashCode() {
+        Character c1 = new Character("sonic");
+        Character c2 = new Character("tails");
+        Character c3 = new Character("sonic");
+        Skill s1 = new Skill("not a char");
+        Character castedChar = (Character) c1;
+
+        assertTrue(c1.equals(c1));
+        assertTrue(c1.equals(c3));
+        assertFalse(c1.equals(c2));
+        assertFalse(c1.equals(s1));
+        assertFalse(c1.equals(null));
+        assertTrue(c1.getName().equals(castedChar.getName()));
+
+        assertEquals(c1.hashCode(),c3.hashCode());
+    }
 
     private void correctSkills(int j, int d, int s) {
         assertEquals("jump", c.getJump().getName());
@@ -52,7 +69,6 @@ class CharacterTest {
         assertEquals(j,c.getJump().getLevel());
         assertEquals(d,c.getDash().getLevel());
         assertEquals(s,c.getShield().getLevel());
-
     }
 
 }
