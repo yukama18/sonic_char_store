@@ -59,10 +59,4 @@ public abstract class CharList {
         return charList.size();
     }
 
-    // REQUIRES: c not already in this (c should be get from AllCharList)
-    // MODIFIES: this
-    // EFFECTS: adds given character to your character list
-    public void addChar(Character c) {
-        charList.add(c);
-    }
 }
