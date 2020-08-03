@@ -1,4 +1,4 @@
-package model.persistence;
+package persistence;
 
 // a writer that can write character list data to a file
 

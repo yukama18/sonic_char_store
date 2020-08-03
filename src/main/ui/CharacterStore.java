@@ -5,8 +5,8 @@ import model.characterlist.AllCharList;
 import model.characterlist.CharList;
 import model.characterlist.UserCharList;
 import model.Character;
-import model.persistence.Reader;
-import model.persistence.Writer;
+import persistence.Reader;
+import persistence.Writer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

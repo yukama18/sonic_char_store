@@ -1,9 +1,8 @@
-package model.persistence;
+package persistence;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import model.characterlist.CharList;
 import model.characterlist.UserCharList;
 
 import java.io.FileNotFoundException;

@@ -1,5 +1,6 @@
-package model;
+package model.characterlist;
 
+import model.Character;
 import model.characterlist.AllCharList;
 import model.characterlist.UserCharList;
 import org.junit.jupiter.api.BeforeEach;
