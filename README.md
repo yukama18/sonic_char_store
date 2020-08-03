@@ -26,4 +26,4 @@ I also don't really play games at all, so I wanted to try to code one and see ho
 - **As a user, I want to be able to select a character and view how much it costs to power up/purchase it.**
 - **As a user, I want to be able to select a character and power up/purchase it.**
 - As a user, I want to be able to recover my characters from where I last left of when I quit the program.
-- As a user, when I select the quit option, I want the application to save my character list to file.
+- As a user, when I select the quit option, I want the application to save my character list to file. 
