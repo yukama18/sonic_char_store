@@ -2,7 +2,6 @@ package persistence;
 
 import model.characterlist.UserCharList;
 import org.junit.jupiter.api.Test;
-import persistence.Reader;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
