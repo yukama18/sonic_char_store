@@ -4,7 +4,7 @@ package ui;
 
 public class Main {
     public static void main(String[] args) {
-//        new CharacterStore();
-        CharStoreGUI gui = new CharStoreGUI();
+//        new CharacterStoreUI();
+        new CharStoreGUI();
     }
 }

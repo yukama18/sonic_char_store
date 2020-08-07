@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 // Store that allows transactions of characters through user interaction
 
-public class CharacterStore {
+public class CharacterStoreUI {
 //  (reference: ca.ubc.cpsc210.bank.ui.TellerApp#runTeller)
 
     public static final String CLIST_FILE = "./data/clists.txt";
@@ -24,7 +24,7 @@ public class CharacterStore {
     private int coins;
 
     // EFFECTS: runs the game store application
-    public CharacterStore() {
+    public CharacterStoreUI() {
         runStore();
     }
 

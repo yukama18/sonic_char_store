@@ -11,14 +11,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CharStoreGUI extends JFrame implements ActionListener {
     public static final String CLIST_FILE = "./data/clists.txt";
     private AllCharList allChar;
     private UserCharList yourChar;
-    private int coins;
+    int coins;
+
+    private JPanel menu;
+
 
 
     public CharStoreGUI() {
@@ -29,40 +30,39 @@ public class CharStoreGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: runs store
     public void runStore() {
-
         loadChar();
-
         displayOptions();
 
-        setSize(800, 500);
+        setSize(1000, 570);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
+        setResizable(false);
     }
 
-    // EFFECTS: displays menu options and welcome messages
+    // EFFECTS: presents menu options and welcome messages
     private void displayOptions() {
         displayMenu();
-        displayChoice();
+        displayNoButtonsPressed();
     }
 
-    private void displayChoice() {
-        JPanel chosenDisplay = new JPanel();
-        chosenDisplay.setBackground(Color.blue);
-
-        getContentPane().add(BorderLayout.CENTER, chosenDisplay);
+    private void displayNoButtonsPressed() {
+        JPanel initDisplay = new JPanel();
+        initDisplay.setBackground(Color.blue);
+        getContentPane().add(BorderLayout.CENTER, initDisplay);
+        revalidate();
     }
 
-    // EFFECTS: displays menu options in WEST
+    // EFFECTS: displays main menu options in WEST
     private void displayMenu() {
-        //main menu panel
-        JPanel menu = new JPanel();
+        menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
         menu.add(topDisplay());
         menu.add(optionDisplay());
+        menu.revalidate();
 
-        //add menu to frame WEST
         getContentPane().add(BorderLayout.WEST, menu);
+        revalidate();
     }
 
     // EFFECTS: creates menu buttons panel
@@ -77,6 +77,7 @@ public class CharStoreGUI extends JFrame implements ActionListener {
         optionDisplay.add(allCharButton);
         optionDisplay.add(yourCharButton);
         optionDisplay.add(coinTossButton);
+        optionDisplay.revalidate();
 
         setEventHandling(allCharButton, yourCharButton, coinTossButton);
 
@@ -98,15 +99,15 @@ public class CharStoreGUI extends JFrame implements ActionListener {
     }
 
     // EFFECTS: adds event-handling to buttons
-    private void setEventHandling(JButton allCharButton, JButton yourCharButton, JButton coinTossButton) {
-        allCharButton.setActionCommand("all");
-        allCharButton.addActionListener(this);
+    private void setEventHandling(JButton allChar, JButton yourChar, JButton coinToss) {
+        allChar.setActionCommand("all");
+        allChar.addActionListener(this);
 
-        yourCharButton.setActionCommand("your");
-        yourCharButton.addActionListener(this);
+        yourChar.setActionCommand("your");
+        yourChar.addActionListener(this);
 
-        coinTossButton.setActionCommand("toss");
-        coinTossButton.addActionListener(this);
+        coinToss.setActionCommand("toss");
+        coinToss.addActionListener(this);
     }
 
     // MODIFIES: this
@@ -132,45 +133,106 @@ public class CharStoreGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        fromMenu(e);
+
+        if ("tossed".equals(e.getActionCommand())) {
+//            new TimerEvent(this);
+            int amountGenerated = randomGenerate();
+            coins += amountGenerated;
+
+            String toPrint = "You have been generated " + amountGenerated + " coins.";
+            JLabel instr = new JLabel(toPrint);
+
+            displayMenu();
+            getContentPane().add(BorderLayout.CENTER, instr);
+            revalidate();
+        }
+    }
+
+    private void fromMenu(ActionEvent e) {
         if ("all".equals(e.getActionCommand())) {
             displayCharacters(allChar);
         } else {
             if ("your".equals(e.getActionCommand())) {
-                ;
+                displayCharacters(yourChar);
             } else {
                 if ("toss".equals(e.getActionCommand())) {
-                    ;
+                    generateCoins();
                 }
             }
         }
     }
 
-    // EFFECTS: displays all characters available
-    private void displayCharacters(CharList cl) {
-        JPanel charDisplay = new JPanel();
-        charDisplay.setBackground(Color.blue);
-        charDisplay.setLayout(new GridLayout(0, 3));
-        displayChar("sonic", cl);
-        displayChar("tails", cl);
-        displayChar("knuckles", cl);
-        displayChar("amy", cl);
-        displayChar("eggman", cl);
+    private void generateCoins() {
+        JPanel display = new JPanel();
+        display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
 
-//        charDisplay.add(getButton("sonic"));
-//        charDisplay.add(getButton("tails"));
-//        charDisplay.add(getButton("knuckles"));
-//        charDisplay.add(getButton("amy"));
-//        charDisplay.add(getButton("eggman"));
+        String toPrint = "        You will be randomly generated a number of coins between 600 and 3000 upon toss.";
+        JLabel instr = new JLabel(toPrint);
 
-        getContentPane().add(BorderLayout.CENTER, charDisplay);
+//        JButton coinToss = new JButton("Toss", new ImageIcon("./data/cointoss.png"));
+        JButton coinToss = new JButton("Toss");
+        coinToss.setActionCommand("tossed");
+        coinToss.addActionListener(this);
+
+        display.add(instr);
+        display.add(coinToss);
+
+        getContentPane().add(BorderLayout.CENTER, display);
         revalidate();
     }
 
+    // EFFECTS: displays all characters available
+    private void displayCharacters(CharList cl) {
+        JPanel display = new JPanel();
+        display.setLayout(new BoxLayout(display, BoxLayout.Y_AXIS));
+
+        JPanel charDisplay = new JPanel();
+        charDisplay.setBackground(Color.blue);
+        charDisplay.setLayout(new GridLayout(0, 3));
+
+        displayChar("sonic", cl, charDisplay);
+        displayChar("tails", cl, charDisplay);
+        displayChar("knuckles", cl, charDisplay);
+        displayChar("amy", cl, charDisplay);
+        displayChar("eggman", cl, charDisplay);
+
+        display.add(displayInstr(cl));
+        display.add(charDisplay);
+        display.revalidate();
+
+        getContentPane().add(BorderLayout.CENTER, display);
+        revalidate();
+    }
+
+    // EFFECTS: displays instructions according to button pressed
+    private JLabel displayInstr(CharList cl) {
+        String toPrint = "";
+        if (cl.getListName().equals("your characters")) {
+            toPrint = "Here are all the characters that you currently own. Click to view or power up. ";
+        } else {
+            toPrint = "Here are all available characters. Each costs 1000 coins. Click to purchase.";
+        }
+        return new JLabel(toPrint);
+    }
+
     // EFFECTS: displays availability status of character in store
-    private void displayChar(String sonic, CharList cl) {
-
-
-
+    private void displayChar(String charName, CharList cl, JPanel panel) {
+        if (cl.containsChar(charName)) {
+            panel.add(getButton(charName));
+            panel.revalidate();
+        } else {
+            if (cl.getListName().equals("your characters")) {
+                JLabel notPurchased = new JLabel("Not yet purchased!");
+                panel.add(notPurchased);
+                panel.revalidate();
+            } else {
+                JLabel alreadyPurchased = new JLabel("Already purchased!");
+                panel.add(alreadyPurchased);
+                panel.revalidate();
+            }
+        }
     }
 
     // REQUIRES: valid charName existent in CharList
@@ -198,5 +260,16 @@ public class CharStoreGUI extends JFrame implements ActionListener {
             charButton = new JButton(eggmanIcon);
         }
         return charButton;
+    }
+
+    // EFFECTS: generate a random integer between 3000 and 600
+    private int randomGenerate() {
+        int amountGenerated = 0;
+        int maxCoins = 3000;
+        int minCoins = 600;
+
+        amountGenerated = (int) (Math.random() * (maxCoins - minCoins)) + minCoins;
+
+        return amountGenerated;
     }
 }
