@@ -1,4 +1,4 @@
-package ui;
+package ui.unused;
 
 import model.characterlist.AllCharList;
 import model.characterlist.CharList;
@@ -17,10 +17,6 @@ public class CharStoreGUI extends JFrame implements ActionListener {
     private AllCharList allChar;
     private UserCharList yourChar;
     int coins;
-
-    private JPanel menu;
-
-
 
     public CharStoreGUI() {
         super("Sonic Character Store");
@@ -55,7 +51,7 @@ public class CharStoreGUI extends JFrame implements ActionListener {
 
     // EFFECTS: displays main menu options in WEST
     private void displayMenu() {
-        menu = new JPanel();
+        JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
         menu.add(topDisplay());
         menu.add(optionDisplay());

@@ -1,4 +1,4 @@
-package ui;
+package ui.unused;
 
 import model.Skill;
 import model.characterlist.AllCharList;

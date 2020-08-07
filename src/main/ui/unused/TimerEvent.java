@@ -1,4 +1,6 @@
-package ui;
+package ui.unused;
+
+import ui.unused.CharStoreGUI;
 
 import javax.swing.*;
 import java.awt.*;
