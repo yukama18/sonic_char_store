@@ -2,6 +2,9 @@ package model.characterlist;
 
 import model.Character;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // A character list with all available characters already loaded
 
 public class AllCharList extends CharList {
