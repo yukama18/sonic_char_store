@@ -1,13 +1,14 @@
 package ui.panels;
 
+// CLASS LEVEL COMMENT: generates panel for tossing coin
+
+
 import ui.CardLayoutGUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-// panel for tossing coin
 
 public class CoinTossPanel extends JPanel implements ActionListener {
     private CardLayoutGUI frame;

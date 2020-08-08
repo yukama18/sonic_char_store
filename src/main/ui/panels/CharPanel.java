@@ -1,5 +1,7 @@
 package ui.panels;
 
+// CLASS LEVEL COMMENT: generates panel for characters
+
 import model.Character;
 import model.characterlist.CharList;
 import ui.CardLayoutGUI;
@@ -9,16 +11,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// panel for characters
-
 public class CharPanel extends JPanel implements ActionListener {
-    CardLayoutGUI frame;
-    CharList cl;
+    private CardLayoutGUI frame;
+    private CharList cl;
 
-    JPanel notChosen;
-    JPanel charDisplay;
+    private JPanel notChosen;
+    private JPanel charDisplay;
 
-    public CardLayout cardLayout;
+    private CardLayout cardLayout;
 
     // EFFECTS: displays all characters available
     public CharPanel(CharList cl, CardLayoutGUI frame) {
@@ -69,6 +69,7 @@ public class CharPanel extends JPanel implements ActionListener {
         notChosen.revalidate();
     }
 
+    // MODIFIES: this
     // EFFECTS: displays availability status of character in store
     private void displayChar(String charName, CharList cl, JPanel panel) {
         if (cl.containsChar(charName)) {
@@ -112,7 +113,7 @@ public class CharPanel extends JPanel implements ActionListener {
     }
 
     // REQUIRES: valid charName existent in CharList
-    // EFFECTS: returns a button with image of charName
+    // EFFECTS: generates a button with image of given character
     private JButton getButton(String charName) {
         JButton charButton = null;
         ImageIcon charIcon = new ImageIcon("./data/char/" + charName + ".png");
@@ -120,6 +121,7 @@ public class CharPanel extends JPanel implements ActionListener {
         return charButton;
     }
 
+    // MODIFIES: allChar, yourChar
     // EFFECTS: purchases character or upgrades character
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -130,6 +132,7 @@ public class CharPanel extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: displays chosen character's skill and power up cost
     private void viewChar(ActionEvent e) {
         Character selected = cl.getChar(e.getActionCommand());
@@ -140,6 +143,7 @@ public class CharPanel extends JPanel implements ActionListener {
         cardLayout.show(this,e.getActionCommand());
     }
 
+    // MODIFIES: this
     // EFFECTS: attempts to purchase chosen character
     private void attemptPurchase(ActionEvent e) {
         if (frame.coins >= 1000) {
@@ -150,6 +154,7 @@ public class CharPanel extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this, allChar, yourChar
     // EFFECTS: purchases chosen character
     private void buyChar(String name) {
         if (cl.containsChar(name)) {
@@ -158,14 +163,9 @@ public class CharPanel extends JPanel implements ActionListener {
             frame.updateCoins(-1000);
 
             notChosen();
-            popUpMessage();
-        }
-    }
 
-    // EFFECTS: prints pop up message when purchasing or powering up character
-    private void popUpMessage() {
-        if (cl.getListName().equals("all characters available")) {
-            // print "You have successfully purchased this character. Power up in 'Your characters owned'.
+            JOptionPane insufficient = new JOptionPane();
+            insufficient.showMessageDialog(frame,"You have successfully purchased this character!");
         }
     }
 }

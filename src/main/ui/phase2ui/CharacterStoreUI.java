@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-// Store that allows transactions of characters through user interaction
+// CLASS LEVEL COMMENT: Store that allows transactions of characters through user interaction
 
 public class CharacterStoreUI {
 //  (reference: ca.ubc.cpsc210.bank.ui.TellerApp#runTeller)

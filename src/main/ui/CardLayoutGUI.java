@@ -1,5 +1,7 @@
 package ui;
 
+// CLASS LEVEL COMMENT: Store that allows transactions of characters through graphical user interaction
+
 import model.characterlist.AllCharList;
 import model.characterlist.UserCharList;
 import persistence.Reader;
@@ -14,22 +16,24 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-// Store that allows transactions of characters through graphical user interaction
 
 public class CardLayoutGUI extends JFrame implements ActionListener {
     public static final String CLIST_FILE = "./data/clists.txt";
+
     public AllCharList allChar;
     public UserCharList yourChar;
+
     public int coins;
+
     private JPanel cards;
     private CardLayout cl;
-
 
     private JPanel noneClicked;
     private CharPanel allCharClicked;
     private CharPanel yourCharClicked;
     private CoinTossPanel coinTossClicked;
 
+    // EFFECTS: runs the game store application
     public CardLayoutGUI() {
         super("Sonic Character Store");
         runStore();
@@ -39,7 +43,6 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     // EFFECTS: runs store
     public void runStore() {
         initChar();
-//        loadChar();
         initCards();
         displayOptions();
 
@@ -62,18 +65,22 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
         getContentPane().add(BorderLayout.CENTER, cards);
     }
 
+    // EFFECTS: initializes panel when no buttons clicked
     private JPanel noButtonsPanel() {
         JPanel noButtonsClicked = new JPanel();
         noButtonsClicked.setBackground(Color.blue);
         return noButtonsClicked;
     }
 
+    // MODIFIES: this
+    // EFFECTS: displays main menu options
     private void displayOptions() {
         displayMenu();
         cl.show(cards, "base");
     }
 
-    // EFFECTS: displays main menu options in WEST
+    // MODIFIES: this
+    // EFFECTS: initializes main menu options in WEST
     private void displayMenu() {
         JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
@@ -85,7 +92,7 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
         revalidate();
     }
 
-    // EFFECTS: creates menu top panel
+    // EFFECTS: returns panel holding instr + total coins owned
     private JPanel topDisplay() {
         //intro message + coins owned
         JLabel intro = new JLabel("Hi, welcome to the Sonic character store!");
@@ -99,7 +106,7 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
         return topDisplay;
     }
 
-    // EFFECTS: creates menu buttons panel
+    // EFFECTS: returns panel holding menu options
     private JPanel optionDisplay() {
         // initializes option buttons
         JButton allCharButton = new JButton("All characters available");
@@ -141,7 +148,7 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads character lists from CLIST_FILE. if file dne, initialize char lists with default values
+    // EFFECTS: loads character lists from CLIST_FILE. if file dne, display fail msg
     private void loadChar() {
         try {
             Reader reader = new Reader(CLIST_FILE);
@@ -158,18 +165,34 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: saves state of your character list to CLIST_FILE
+    private void saveChar() {
+        try {
+            Writer writer = new Writer(CLIST_FILE);
+            writer.write(yourChar);
+            writer.close();
+        } catch (IOException e) {
+            JOptionPane insufficient = new JOptionPane();
+            insufficient.showMessageDialog(this, "Unable to save file!");
+        }
+    }
+
+    // MODIFIES: this
     // EFFECTS: initializes default list of all characters available and characters user owns
     public void initChar() {
         allChar = new AllCharList();
         yourChar = new UserCharList("your characters");
     }
 
+    // MODIFIES: this
     // EFFECTS: updates total coins owned by user by updateAmount
     public void updateCoins(int updateAmount) {
         coins += updateAmount;
         displayMenu();
     }
 
+    // MODIFIES: this
     // EFFECTS: action events for each button in main menu
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -184,7 +207,6 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
             cards.add(yourCharClicked, "your");
 
             cl.show(cards, "your");
-//            yourCharClicked.cardLayout.show(yourCharClicked, "none");
         }
         if ("toss".equals(e.getActionCommand())) {
             coinTossClicked = new CoinTossPanel(this);
@@ -200,18 +222,6 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
         }
         if ("load".equals(e.getActionCommand())) {
             loadChar();
-        }
-    }
-
-    // EFFECTS: saves state of your character list to CLIST_FILE
-    private void saveChar() {
-        try {
-            Writer writer = new Writer(CLIST_FILE);
-            writer.write(yourChar);
-            writer.close();
-        } catch (IOException e) {
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(this, "Unable to save file!");
         }
     }
 }

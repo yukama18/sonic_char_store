@@ -1,5 +1,7 @@
 package model.characterlist;
 
+// CLASS LEVEL COMMENT: an empty character list with ability to add new characters
+
 import model.Character;
 
 import java.io.Serializable;

@@ -1,11 +1,8 @@
 package model.characterlist;
 
+// CLASS LEVEL COMMENT: a character list with all available characters already loaded
+
 import model.Character;
-
-import java.util.ArrayList;
-import java.util.List;
-
-// A character list with all available characters already loaded
 
 public class AllCharList extends CharList {
     static final int MAX_SIZE = 5;
@@ -16,7 +13,6 @@ public class AllCharList extends CharList {
     private Character amy;                   // = new Character("amy");
     private Character eggman;               // = new Character("eggman");
 
-    // REQUIRES: only called when listName == "all characters available"
     // EFFECTS: creates an empty charList first
     //              - create empty list of Characters then loads all available characters
     public AllCharList() {
@@ -29,6 +25,7 @@ public class AllCharList extends CharList {
         loadAllChar();
     }
 
+    // EFFECTS: creates a characters available list but only loads characters not found in given yourChar list
     public AllCharList(CharList yourChar) {
         super(ALL_CHAR_AVAIL);
         sonic = new Character("sonic");

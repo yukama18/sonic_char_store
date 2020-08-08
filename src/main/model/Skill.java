@@ -1,5 +1,7 @@
 package model;
 
+// CLASS LEVEL COMMENT: skill with name, level, and power up cost
+
 import java.io.Serializable;
 import java.util.Objects;
 

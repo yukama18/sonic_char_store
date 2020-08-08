@@ -1,6 +1,6 @@
 package model;
 
-// character with name, base cost, and 3 skills
+// CLASS LEVEL COMMENT: character with name, base cost, and 3 skills
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package persistence;
 
-// a writer that can write character list data to a file
+// CLASS LEVEL COMMENT: a writer that can write character list data to a file
 
 import com.google.gson.Gson;
 import model.characterlist.UserCharList;
