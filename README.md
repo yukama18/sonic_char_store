@@ -25,5 +25,16 @@ I also don't really play games at all, so I wanted to try to code one and see ho
 - **As a user, I want to be able to add a character to the list of characters I own.**
 - **As a user, I want to be able to select a character and view how much it costs to power up/purchase it.**
 - **As a user, I want to be able to select a character and power up/purchase it.**
-- As a user, I want to be able to recover my characters from where I last left of when I quit the program.
-- As a user, when I select the quit option, I want the application to save my character list to file. 
+- **As a user, I want to be able to recover my characters from where I last left of when I quit the program.**
+- **As a user, I want to be able to save the state of my application.**
+
+
+#### Instructions for Grader
+- Click the button "Generate lucky coin toss" to generate a lucky toss.
+- You can view your total amount of coins at all times in the top left corner.
+- Click "All characters available" to view. Choose character to purchase and add to "Your characters owned".
+- Click "Your characters owned" to view characters you have purchased. Click to view skill levels and power up costs.
+- Select a character and click a skill button to power up.
+- AUDIOVISUALS: all character buttons have images of the character; coin toss generates gif
+- SAVE: click "Save progress" to save character purchase progress to file.
+- LOAD: click "Load past progress" to load last saved progress. If no saved progerss present, start from scratch.

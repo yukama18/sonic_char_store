@@ -1,4 +1,4 @@
-package ui.unused;
+package ui.phase2ui;
 
 import model.Skill;
 import model.characterlist.AllCharList;

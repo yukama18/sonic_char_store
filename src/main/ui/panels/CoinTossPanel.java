@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// panel for tossing coin
+
 public class CoinTossPanel extends JPanel implements ActionListener {
     private CardLayoutGUI frame;
 
@@ -20,17 +22,21 @@ public class CoinTossPanel extends JPanel implements ActionListener {
 
     int amountGenerated;
 
+    // EFFECTS: constructs panel for when user tries to generate coin toss
     public CoinTossPanel(CardLayoutGUI frame) {
         this.frame = frame;
         run();
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes card layout and shows panel when no buttons clicked
     private void run() {
         initCards();
         cl.show(this,"base");
     }
 
-    // EFFECTS: initializes cards and adds to card layout panel
+    // MODIFIES: this
+    // EFFECTS: initializes cards to add to this, sets untossed panel visible
     public void initCards() {
         unTossed();
         tossed = new JPanel();
@@ -42,7 +48,8 @@ public class CoinTossPanel extends JPanel implements ActionListener {
         cl = (CardLayout) getLayout();
     }
 
-    // EFFECTS: sets up panel before coin toss
+    // MODIFIES: this
+    // EFFECTS: sets up unTossed panel, displays toss coin button
     public void unTossed() {
         unTossed = new JPanel();
         unTossed.setLayout(new BoxLayout(unTossed,BoxLayout.Y_AXIS));
@@ -50,24 +57,27 @@ public class CoinTossPanel extends JPanel implements ActionListener {
         instr = new JLabel("  You will be randomly generated 600 to 3000 coins upon toss.");
         coinToss = new JButton("Toss");
 
-//        coinToss.setActionCommand("tossed");
         coinToss.addActionListener(this);
 
         unTossed.add(instr);
         unTossed.add(coinToss);
     }
 
+    // MODIFIES: this
+    // EFFECTS: tosses coin and switches visible panel
     @Override
     public void actionPerformed(ActionEvent e) {
         tossed();
         cl.show(this,"toss");
     }
 
+    // MODIFIES: this, coins
+    // EFFECTS: tosses coin
     private void tossed() {
         tossed.setLayout(new BoxLayout(tossed,BoxLayout.Y_AXIS));
 
         amountGenerated = randomGenerate();
-        frame.incrementCoins(amountGenerated);
+        frame.updateCoins(amountGenerated);
 
         ImageIcon coinImage = new ImageIcon("./data/cointoss.gif");
         JLabel image = new JLabel(coinImage);
