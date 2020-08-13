@@ -50,3 +50,10 @@ AllCharList, on the other hand, loads all the available characters and creates a
  the character. UserCharList also overrides the getListName() method by returning the actual field listName, while 
  AllCharList always returns the constant variable ALL_CHAR_AVAIL = "all characters available".
 
+#### Phase 4: Task 3
+Cohesion: My main GUI class was handling the displays for the graphical UI as well as managing the saving/loading of 
+the character lists. Since that seems like it is taking an additional role, I refactored a new class called ListManager
+ that focused on saving and loading the character lists. The original methods in CardLayout GUI still exist, but they 
+ now call the ListManager's methods (from the new ListManager field).
+
+Coupling: 

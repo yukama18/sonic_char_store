@@ -2,10 +2,6 @@ package ui;
 
 // CLASS LEVEL COMMENT: Store that allows transactions of characters through graphical user interaction
 
-import model.characterlist.AllCharList;
-import model.characterlist.UserCharList;
-import persistence.Reader;
-import persistence.Writer;
 import ui.panels.CharPanel;
 import ui.panels.CoinTossPanel;
 
@@ -13,15 +9,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 
 public class CardLayoutGUI extends JFrame implements ActionListener {
-    public static final String CLIST_FILE = "./data/clists.txt";
+//    public static final String CLIST_FILE = "./data/clists.txt";
 
-    public AllCharList allChar;
-    public UserCharList yourChar;
+//    public AllCharList allChar;
+//    public UserCharList yourChar;
+    public ListManager listManager;
 
     public int coins;
 
@@ -36,6 +31,7 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     // EFFECTS: runs the game store application
     public CardLayoutGUI() {
         super("Sonic Character Store");
+        listManager = new ListManager();
         runStore();
     }
 
@@ -84,6 +80,7 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     private void displayMenu() {
         JPanel menu = new JPanel();
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
+
         menu.add(topDisplay());
         menu.add(optionDisplay());
         menu.revalidate();
@@ -94,12 +91,12 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
 
     // EFFECTS: returns panel holding instr + total coins owned
     private JPanel topDisplay() {
-        //intro message + coins owned
-        JLabel intro = new JLabel("Hi, welcome to the Sonic character store!");
-        JLabel coinsOwned = new JLabel("Coins owned: " + coins);
-        //top display holding JLabels
         JPanel topDisplay = new JPanel();
         topDisplay.setLayout(new BoxLayout(topDisplay, BoxLayout.Y_AXIS));
+
+        JLabel intro = new JLabel("Hi, welcome to the Sonic character store!");
+        JLabel coinsOwned = new JLabel("Coins owned: " + coins);
+
         topDisplay.add(intro);
         topDisplay.add(coinsOwned);
 
@@ -108,15 +105,15 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
 
     // EFFECTS: returns panel holding menu options
     private JPanel optionDisplay() {
-        // initializes option buttons
+        JPanel optionDisplay = new JPanel();
+        optionDisplay.setLayout(new BoxLayout(optionDisplay, BoxLayout.Y_AXIS));
+
         JButton allCharButton = new JButton("All characters available");
         JButton yourCharButton = new JButton("Your characters owned");
         JButton coinTossButton = new JButton("Generate lucky coin toss");
         JButton saveButton = new JButton("Save progress");
         JButton loadButton = new JButton("Load past progress");
-        //options display holding JButtons
-        JPanel optionDisplay = new JPanel();
-        optionDisplay.setLayout(new BoxLayout(optionDisplay, BoxLayout.Y_AXIS));
+
         optionDisplay.add(allCharButton);
         optionDisplay.add(yourCharButton);
         optionDisplay.add(coinTossButton);
@@ -150,39 +147,44 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     // MODIFIES: this
     // EFFECTS: loads character lists from CLIST_FILE. if file dne, display fail msg
     private void loadChar() {
-        try {
-            Reader reader = new Reader(CLIST_FILE);
-            yourChar = reader.readList();
-            reader.close();
-            allChar = new AllCharList(yourChar);
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(this, "Past progress loaded!");
-        } catch (FileNotFoundException e) {
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(this,"Sorry, no past progress found!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        listManager.loadChar(this);
+//        try {
+//            Reader reader = new Reader(CLIST_FILE);
+//            yourChar = reader.readList();
+//            reader.close();
+//
+//            allChar = new AllCharList(yourChar);
+//
+//            JOptionPane loadSuccess = new JOptionPane();
+//            loadSuccess.showMessageDialog(this, "Past progress loaded!");
+//        } catch (FileNotFoundException e) {
+//            JOptionPane loadFail = new JOptionPane();
+//            loadFail.showMessageDialog(this,"Sorry, no past progress found!");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     // MODIFIES: this
     // EFFECTS: saves state of your character list to CLIST_FILE
     private void saveChar() {
-        try {
-            Writer writer = new Writer(CLIST_FILE);
-            writer.write(yourChar);
-            writer.close();
-        } catch (IOException e) {
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(this, "Unable to save file!");
-        }
+        listManager.saveChar(this);
+//        try {
+//            Writer writer = new Writer(CLIST_FILE);
+//            writer.write(yourChar);
+//            writer.close();
+//        } catch (IOException e) {
+//            JOptionPane saveFail = new JOptionPane();
+//            saveFail.showMessageDialog(this, "Unable to save file!");
+//        }
     }
 
     // MODIFIES: this
     // EFFECTS: initializes default list of all characters available and characters user owns
     public void initChar() {
-        allChar = new AllCharList();
-        yourChar = new UserCharList("your characters");
+//        allChar = new AllCharList();
+//        yourChar = new UserCharList("your characters");
+        listManager.initChar();
     }
 
     // MODIFIES: this
@@ -197,13 +199,13 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("all".equals(e.getActionCommand())) {
-            allCharClicked = new CharPanel(allChar, this);
+            allCharClicked = listManager.allCharPanel(this); //new CharPanel(allChar, this);
             cards.add(allCharClicked, "all");
 
             cl.show(cards, "all");
         }
         if ("your".equals(e.getActionCommand())) {
-            yourCharClicked = new CharPanel(yourChar, this);
+            yourCharClicked = listManager.yourCharPanel(this);  //new CharPanel(yourChar, this);
             cards.add(yourCharClicked, "your");
 
             cl.show(cards, "your");
@@ -217,8 +219,8 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
         if ("save".equals(e.getActionCommand())) {
             saveChar();
 
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(this, "Progress saved!");
+            JOptionPane saveSuccess = new JOptionPane();
+            saveSuccess.showMessageDialog(this, "Progress saved!");
         }
         if ("load".equals(e.getActionCommand())) {
             loadChar();

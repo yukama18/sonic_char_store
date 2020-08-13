@@ -159,13 +159,13 @@ public class CharPanel extends JPanel implements ActionListener {
     private void buyChar(String name) {
         if (cl.containsChar(name)) {
             Character toAdd = cl.getChar(name);
-            frame.yourChar.addChar(toAdd);
+            frame.listManager.yourChar.addChar(toAdd);
             frame.updateCoins(-1000);
 
             notChosen();
 
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(frame,"You have successfully purchased this character!");
+            JOptionPane purchaseSuccess = new JOptionPane();
+            purchaseSuccess.showMessageDialog(frame,"You have successfully purchased this character!");
         }
     }
 }

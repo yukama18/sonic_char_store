@@ -3,26 +3,22 @@ package model;
 // CLASS LEVEL COMMENT: skill with name, level, and power up cost
 
 import java.io.Serializable;
-import java.util.Objects;
 
 public class Skill implements Serializable {
-    static final int MAX_LEVEL = 5;
-    static final int POWER_UP_BASE_COST = 300;
+    static final int BASE_POWER_UP_COST = 300;
 
     private String name;
     private int level;
     private int powerUpCost;
 
-    // EFFECTS: creates new Skill with name,
-    //                                 base level = 1,
-    //                                 base powerUpCost = POWER_UP_BASE_COST
+    // EFFECTS: creates new Skill with name, base level = 1, base powerUpCost = BASE_POWER_UP_COST
     public Skill(String name) {
         this.name = name;
         level = 1;
-        powerUpCost = POWER_UP_BASE_COST;
+        powerUpCost = BASE_POWER_UP_COST;
     }
 
-    // REQUIRES: level != MAX_LEVEL
+    // REQUIRES: level < 5
     // MODIFIES: this
     // EFFECTS: increases skill level by 1 and increment powerUpCost
     public void levelUpByOne() {
@@ -30,13 +26,11 @@ public class Skill implements Serializable {
         incrementPowerUpCost();
     }
 
-    // helper
     // EFFECTS: increment skill level by 1
     private void incrementLevel() {
         level = level + 1;
     }
 
-    // helper
     // MODIFIES: this
     // EFFECTS: increments powerUpCost by 200 * level
     private void incrementPowerUpCost() {

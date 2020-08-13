@@ -122,8 +122,8 @@ public class SkillPanel extends JPanel implements ActionListener {
             frame.updateCoins(-s.getPowerUpCost());
             character.levelUp(s.getName());
 
-            JOptionPane insufficient = new JOptionPane();
-            insufficient.showMessageDialog(frame,"You have successfully leveled up this skill!");
+            JOptionPane levelUp = new JOptionPane();
+            levelUp.showMessageDialog(frame,"You have successfully leveled up this skill!");
         } else {
             JOptionPane insufficient = new JOptionPane();
             insufficient.showMessageDialog(frame,"Sorry, insufficient coins!");

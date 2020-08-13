@@ -14,7 +14,7 @@ public class SkillTest {
         assertEquals("test skill", t.getName());
 //        assertEquals(0,t.getStat());
         assertEquals(1,t.getLevel());
-        assertEquals(Skill.POWER_UP_BASE_COST,t.getPowerUpCost());
+        assertEquals(Skill.BASE_POWER_UP_COST,t.getPowerUpCost());
     }
 
     @Test
@@ -22,7 +22,7 @@ public class SkillTest {
         t.levelUpByOne();
 //        assertEquals(0 + Skill.STAT_INCREMENTER,t.getStat());
         assertEquals(2,t.getLevel());
-        assertEquals(Skill.POWER_UP_BASE_COST + 400,t.getPowerUpCost());
+        assertEquals(Skill.BASE_POWER_UP_COST + 400,t.getPowerUpCost());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class SkillTest {
         t.levelUpByOne();
 //        assertEquals(Skill.STAT_INCREMENTER * 2,t.getStat());
         assertEquals(3,t.getLevel());
-        assertEquals(Skill.POWER_UP_BASE_COST + 400 + 600,t.getPowerUpCost());
+        assertEquals(Skill.BASE_POWER_UP_COST + 400 + 600,t.getPowerUpCost());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class SkillTest {
         t.levelUpByOne();
 //        assertEquals(Skill.STAT_INCREMENTER * 3,t.getStat());
         assertEquals(4,t.getLevel());
-        assertEquals(Skill.POWER_UP_BASE_COST + 400 + 600 + 800,t.getPowerUpCost());
+        assertEquals(Skill.BASE_POWER_UP_COST + 400 + 600 + 800,t.getPowerUpCost());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class SkillTest {
         t.levelUpByOne();
 //        assertEquals(Skill.STAT_INCREMENTER * 4,t.getStat());
         assertEquals(5,t.getLevel());
-        assertEquals(Skill.POWER_UP_BASE_COST + 400 + 600 + 800 + 1000,t.getPowerUpCost());
+        assertEquals(Skill.BASE_POWER_UP_COST + 400 + 600 + 800 + 1000,t.getPowerUpCost());
     }
 
 }
