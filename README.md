@@ -37,4 +37,16 @@ I also don't really play games at all, so I wanted to try to code one and see ho
 - Select a character and click a skill button to power up.
 - AUDIOVISUALS: all character buttons have images of the character; coin toss generates gif
 - SAVE: click "Save progress" to save character purchase progress to file.
-- LOAD: click "Load past progress" to load last saved progress. If no saved progerss present, start from scratch.
+- LOAD: click "Load past progress" to load last saved progress. If no saved progress present, start from scratch.
+
+#### Phase 4: Task 2
+I have implemented a type hierarchy. I used an abstract CharList class as the superclass/template. Since the user needs 
+to keep track of a list of characters already owned and a list of characters not yet owned, there are two subclasses: 
+UserCharList and AllCharList. UserCharList only has one additional method than CharList, and it is the ability to add
+new characters. AllCharList doesn't have this function as it only needs to remove characters from its list, not add.
+AllCharList, on the other hand, loads all the available characters and creates a nonempty character list upon
+ initiation (so it builds upon the superclass' constructor). UserCharList overrides the getChar(String charName) method
+ to return the given character in its list. AllCharList overrides the same method but removes the character upon getting
+ the character. UserCharList also overrides the getListName() method by returning the actual field listName, while 
+ AllCharList always returns the constant variable ALL_CHAR_AVAIL = "all characters available".
+

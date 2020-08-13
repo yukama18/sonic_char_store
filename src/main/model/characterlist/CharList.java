@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public abstract class CharList {
     ArrayList<Character> charList;
-    private String listName;
+    protected String listName;
 
     // EFFECTS: creates an empty list of Characters with name as listName
     public CharList(String listName) {
@@ -30,24 +30,10 @@ public abstract class CharList {
         return containsChar;
     }
 
-    // REQUIRES: this contains Character with charName (only once)
-    // MODIFIES: this
-    // EFFECTS: returns Character with given charName in list
-    public Character getChar(String charName) {
-        Character foundChar = null;
-        for (Character c: charList) {
-            if (c.getName().equals(charName)) {
-                foundChar = c;
-                break;
-            }
-        }
-        return foundChar;
-    }
+    public abstract Character getChar(String charName);
 
     // EFFECTS: returns name of the list
-    public String getListName() {
-        return listName;
-    }
+    public abstract String getListName();
 
     // EFFECTS: returns true if CharacterList is empty, otherwise return false
     public boolean isEmpty() {
