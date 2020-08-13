@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class CardLayoutGUI extends JFrame implements ActionListener {
+public class CharStoreGUI extends JFrame implements ActionListener {
 
     public ListManager listManager;
 
@@ -26,7 +26,7 @@ public class CardLayoutGUI extends JFrame implements ActionListener {
     private CoinTossPanel coinTossClicked;
 
     // EFFECTS: runs the game store application
-    public CardLayoutGUI() {
+    public CharStoreGUI() {
         super("Sonic Character Store");
         listManager = new ListManager();
         runStore();

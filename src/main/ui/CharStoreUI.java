@@ -1,4 +1,4 @@
-package ui.phase2ui;
+package ui;
 
 import model.Skill;
 import model.characterlist.AllCharList;
@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 // CLASS LEVEL COMMENT: Store that allows transactions of characters through user interaction
 
-public class CharacterStoreUI {
+public class CharStoreUI {
 //  (reference: ca.ubc.cpsc210.bank.ui.TellerApp#runTeller)
 
     public static final String CLIST_FILE = "./data/clists.txt";
@@ -22,9 +22,11 @@ public class CharacterStoreUI {
     private AllCharList allChar;
     private UserCharList yourChar;
     private int coins;
+    private Writer writer;
+    private Reader reader;
 
     // EFFECTS: runs the game store application
-    public CharacterStoreUI() {
+    public CharStoreUI() {
         runStore();
     }
 
@@ -55,7 +57,7 @@ public class CharacterStoreUI {
     // EFFECTS: saves state of your character list to CLIST_FILE
     private void saveChar() {
         try {
-            Writer writer = new Writer(CLIST_FILE);
+            writer = new Writer(CLIST_FILE);
             writer.write(yourChar);
             writer.close();
         } catch (IOException e) {
@@ -67,7 +69,7 @@ public class CharacterStoreUI {
     // EFFECTS: loads character lists from CLIST_FILE. if file dne, initialize char lists with default values
     private void loadChar() {
         try {
-            Reader reader = new Reader(CLIST_FILE);
+            reader = new Reader(CLIST_FILE);
             yourChar = reader.readList();
             reader.close();
             allChar = new AllCharList(yourChar);

@@ -5,7 +5,7 @@ package ui.panels;
 import model.Character;
 import model.Skill;
 import model.characterlist.CharList;
-import ui.CardLayoutGUI;
+import ui.CharStoreGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class SkillPanel extends JPanel implements ActionListener {
     private Character character;
     private String charName;
     private CharList cl;
-    private CardLayoutGUI frame;
+    private CharStoreGUI frame;
 
     private Skill jump;
     private Skill dash;
@@ -30,7 +30,7 @@ public class SkillPanel extends JPanel implements ActionListener {
     private JPanel skills;
 
     // EFFECTS: constructs panel for each character's skills
-    public SkillPanel(Character character, CharList cl, CardLayoutGUI frame) {
+    public SkillPanel(Character character, CharList cl, CharStoreGUI frame) {
         this.character = character;
         this.charName = character.getName();
         this.cl = cl;

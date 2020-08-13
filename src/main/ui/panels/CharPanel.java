@@ -4,7 +4,7 @@ package ui.panels;
 
 import model.Character;
 import model.characterlist.CharList;
-import ui.CardLayoutGUI;
+import ui.CharStoreGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CharPanel extends JPanel implements ActionListener {
-    private CardLayoutGUI frame;
+    private CharStoreGUI frame;
     private CharList cl;
 
     private JPanel notChosen;
@@ -21,7 +21,7 @@ public class CharPanel extends JPanel implements ActionListener {
     private CardLayout cardLayout;
 
     // EFFECTS: displays all characters available
-    public CharPanel(CharList cl, CardLayoutGUI frame) {
+    public CharPanel(CharList cl, CharStoreGUI frame) {
         this.frame = frame;
         this.cl = cl;
 

@@ -43,6 +43,4 @@ public class UserCharList extends CharList {
     public void addChar(Character c) {
         charList.add(c);
     }
-
-
 }

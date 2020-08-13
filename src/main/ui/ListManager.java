@@ -18,6 +18,9 @@ public class ListManager {
     public AllCharList allChar;
     public UserCharList yourChar;
 
+    private Writer writer;
+    private Reader reader;
+
     public ListManager() {
         initChar();
     }
@@ -31,9 +34,9 @@ public class ListManager {
 
     // MODIFIES: this, cards
     // EFFECTS: loads character lists from CLIST_FILE. if file dne, display fail msg
-    public void loadChar(CardLayoutGUI frame) {
+    public void loadChar(CharStoreGUI frame) {
         try {
-            Reader reader = new Reader(CLIST_FILE);
+            reader = new Reader(CLIST_FILE);
             yourChar = reader.readList();
             reader.close();
 
@@ -51,9 +54,9 @@ public class ListManager {
 
     // MODIFIES: this, cards
     // EFFECTS: saves state of your character list to CLIST_FILE
-    public void saveChar(CardLayoutGUI frame) {
+    public void saveChar(CharStoreGUI frame) {
         try {
-            Writer writer = new Writer(CLIST_FILE);
+            writer = new Writer(CLIST_FILE);
             writer.write(yourChar);
             writer.close();
         } catch (IOException e) {
@@ -64,13 +67,13 @@ public class ListManager {
 
     // MODIFIES: cards
     // EFFECTS: generate panel for all characters available
-    public CharPanel allCharPanel(CardLayoutGUI frame) {
+    public CharPanel allCharPanel(CharStoreGUI frame) {
         return new CharPanel(allChar, frame);
     }
 
     // MODIFIES: cards
     // EFFECTS: generate panel for your characters owned
-    public CharPanel yourCharPanel(CardLayoutGUI frame) {
+    public CharPanel yourCharPanel(CharStoreGUI frame) {
         return new CharPanel(yourChar, frame);
     }
 }
