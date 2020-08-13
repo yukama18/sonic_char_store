@@ -81,19 +81,21 @@ public class CharPanel extends JPanel implements ActionListener {
             panel.revalidate();
         } else {
             if (cl.getListName().equals("your characters")) {
-                JLabel notPurchased = new JLabel("Not yet purchased!");
-                notPurchased.setForeground(Color.lightGray);
-                notPurchased.setHorizontalAlignment(SwingConstants.CENTER);
-                panel.add(notPurchased);
-                panel.revalidate();
+                charNotContained(panel,"Not yet purchased!");
             } else {
-                JLabel alreadyPurchased = new JLabel("Already purchased!");
-                alreadyPurchased.setForeground(Color.lightGray);
-                alreadyPurchased.setHorizontalAlignment(SwingConstants.CENTER);
-                panel.add(alreadyPurchased);
-                panel.revalidate();
+                charNotContained(panel, "Already purchased!");
             }
         }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: displays correct message to charDisplay
+    private void charNotContained(JPanel panel, String message) {
+        JLabel notAvailable = new JLabel(message);
+        notAvailable.setForeground(Color.lightGray);
+        notAvailable.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(notAvailable);
+        panel.revalidate();
     }
 
     // EFFECTS: displays instructions according to button pressed

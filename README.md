@@ -44,16 +44,18 @@ I have implemented a type hierarchy. I used an abstract CharList class as the su
 to keep track of a list of characters already owned and a list of characters not yet owned, there are two subclasses: 
 UserCharList and AllCharList. UserCharList only has one additional method than CharList, and it is the ability to add
 new characters. AllCharList doesn't have this function as it only needs to remove characters from its list, not add.
-AllCharList, on the other hand, loads all the available characters and creates a nonempty character list upon
- initiation (so it builds upon the superclass' constructor). UserCharList overrides the getChar(String charName) method
- to return the given character in its list. AllCharList overrides the same method but removes the character upon getting
- the character. UserCharList also overrides the getListName() method by returning the actual field listName, while 
- AllCharList always returns the constant variable ALL_CHAR_AVAIL = "all characters available".
+AllCharList, on the other hand, loads all the available characters and creates a nonempty character list upon 
+initiation (so it builds upon the superclass' constructor). UserCharList overrides the getChar(String charName) method 
+to return the given character in its list. AllCharList overrides the same method but removes the character upon getting 
+the character. UserCharList also overrides the getListName() method by returning the actual field listName, while 
+AllCharList always returns the constant variable ALL_CHAR_AVAIL = "all characters available".
 
 #### Phase 4: Task 3
 Cohesion: My main GUI class was handling the displays for the graphical UI as well as managing the saving/loading of 
-the character lists. Since that seems like it is taking an additional role, I refactored a new class called ListManager
- that focused on saving and loading the character lists. The original methods in CardLayout GUI still exist, but they 
- now call the ListManager's methods (from the new ListManager field).
+the character lists. Since that seems like it is taking an additional role, I refactored a new class called ListManager 
+that focused on saving and loading the character lists. The original methods in CardLayout GUI still exist, but they 
+now call the ListManager's methods (from the new ListManager field).
 
-Coupling: 
+Coupling: There was duplicated code within the CharPanel class in the displayChar() method. I refactored out the method 
+into a charNotContained() method where it reduces repeating the same chunk of code twice. Instead, each time it is 
+called, a new parameter is passed, representing the specific message it wants to display.
