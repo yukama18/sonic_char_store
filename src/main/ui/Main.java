@@ -4,7 +4,8 @@ package ui;
 
 public class Main {
     public static void main(String[] args) {
-//        new CharacterStoreUI();        //this runs console-based application
-        new CharStoreGUI();             //this runs GUI application
+        new CharStoreUI();        //this runs console-based application
+//        new CharStoreGUI();             //this runs GUI application
+
     }
 }

@@ -1,0 +1,1 @@
+{"charList":[{"name":"sonic","characterCost":1000,"jump":{"name":"jump","level":1,"powerUpCost":300},"dash":{"name":"dash","level":1,"powerUpCost":300},"shield":{"name":"shield","level":1,"powerUpCost":300}}],"listName":"test list"}
